@@ -8,9 +8,29 @@
 </head>
 <body>
     <div id="gameContainer">
-        <canvas id="gameBoard" width="400" height="400"></canvas>
         <div id="scoreText">0</div>
-        <button id="resetBtn">Reset</button>
+        <canvas id="gameBoard" width="400" height="400"></canvas>
+        <div class="forAllArrows">
+            <div class="directionButtons">
+                <button class="arrow-button arrowButtonUp"><span class="arrow-up">Up</span></button>
+                <div class="sideButtons">
+                    <button class="arrow-button arrowButtonLeft"><span class="arrow-left">Left</span></button>
+                    <button class="arrow-button arrowButtonRight"><span class="arrow-right">Right</span></button>
+                </div>
+                <button class="arrow-button arrowButtonDown"><span class="arrow-down">Down</span></button>
+            </div>
+        </div>
+        <div>
+            <select id="mySelect">
+                <option value="option1"> Very Easy</option>
+                <option value="option2">Easy</option>
+                <option value="option3">Normal</option>
+                <option value="option4">Hard</option>
+                <option value="option5">Very Hard</option>
+              </select>    
+        </div>      
+        <button id="resetBtn">Start Game</button>
+        
     </div>
     <script src="script.js"></script>
 </body>

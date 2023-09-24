@@ -3,6 +3,10 @@ const gameBoard = document.getElementById('gameBoard')
 const ctx = gameBoard.getContext('2d')
 const scoreText = document.getElementById('scoreText')
 const resetBtn = document.getElementById('resetBtn')
+const arrowButtonUp = document.querySelector('.arrowButtonUp')
+const arrowButtonLeft = document.querySelector('.arrowButtonLeft')
+const arrowButtonRight = document.querySelector('.arrowButtonRight')
+const arrowButtonDown = document.querySelector('.arrowButtonDown')
 const gameWidth = gameBoard.width
 const gameHeight = gameBoard.height
 const boardBackground = 'white';
@@ -10,12 +14,49 @@ const snakeColor = 'lightgreen';
 const snakeBorder = 'black'
 const foodColor = 'red'
 const unitSize = 20;
+
+
+arrowButtonUp.addEventListener('click', () => {
+    const goingDown = (yVelocity == unitSize)
+    if (!goingDown) {
+        yVelocity = -unitSize
+        xVelocity = 0
+    }
+})
+
+arrowButtonLeft.addEventListener('click', () => {
+    const goingRight = (xVelocity == unitSize);
+    if (!goingRight) {
+        xVelocity = -unitSize
+        yVelocity = 0
+    }
+})
+
+arrowButtonRight.addEventListener('click', () => {
+    const goingLeft = (xVelocity == -unitSize)
+    if (!goingLeft) {
+        xVelocity = unitSize
+        yVelocity = 0
+    }
+})
+
+arrowButtonDown.addEventListener('click', () => {
+    const goingUp = (yVelocity == -unitSize)
+    if (!goingUp) {
+        yVelocity = unitSize
+        xVelocity = 0;
+    }
+})
+
+
+
 let score = 0;
 let running = false;
 let xVelocity = unitSize
 let yVelocity = 0
 let foodX;
 let foodY;
+let difLevel;
 
 let snake = [
     {x: unitSize*4, y: 0},
@@ -33,6 +74,7 @@ gameStart()
 
 
 function nextTick() {
+
     if (running) {
         setTimeout(()=>{
             clearBoard();
@@ -41,7 +83,7 @@ function nextTick() {
             drawSnake();
             checkGameOver();
             nextTick();
-        }, 100)
+        }, difLevel)
     } else{
         displayGameOver();
     }
@@ -69,12 +111,39 @@ function drawFood() {
 }
 
 function gameStart() {
+    const selectElement = document.getElementById("mySelect");
+    const selectedOptionValue = selectElement.value;
+    
+    switch (selectedOptionValue) {
+        case "option1":
+          // Code to perform when Option 1 is selected
+          difLevel = 500
+                break;
+        case "option2":
+          // Code to perform when Option 2 is selected
+          difLevel = 400
+          break;
+        case "option3":
+          // Code to perform when Option 3 is selected
+          difLevel = 300
+          break;
+        case "option4":
+          // Code to perform when Option 3 is selected
+          difLevel = 200
+          break;
+        case "option5":
+          // Code to perform when Option 3 is selected
+          difLevel = 100
+          break;
+      }
+    
     running = true  
     scoreText.textContent = score
     createFood()
     drawFood()
     nextTick()
 }
+
 
 
 function moveSnake() {
@@ -101,11 +170,13 @@ function drawSnake() {
 }
 
 function changeDirection(event) {
+    
     const keyPressed = event.keyCode;
     const LEFT = 37
     const UP = 38
     const RIGHT = 39
     const DOWN = 40
+   
 
     const goingUp = (yVelocity == -unitSize)
     const goingDown = (yVelocity == unitSize)
