@@ -38,7 +38,7 @@
     margin-top: 10px;
 }
 .directionButtons{
-    width: 250px;
+    width: 350px;
 }
 
 .arrow-button {
@@ -47,7 +47,7 @@
     background-color: #eee;
     padding: 0.5em 0;
     /* display: block; */
-    width: 75px;
+    width: 100px;
     height: 70px;
     color: #333;
     text-decoration: none;
@@ -65,7 +65,7 @@
   
   .sideButtons {
     display: flex;
-   gap: 3rem;
+   gap: 4rem;
    justify-content: center;
   }
 
