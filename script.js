@@ -139,6 +139,7 @@ function gameStart() {
     
     running = true  
     scoreText.textContent = score
+    window.scrollTo(0, 0);
     createFood()
     drawFood()
     nextTick()
