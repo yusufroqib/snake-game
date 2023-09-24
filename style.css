@@ -10,6 +10,7 @@
 #scoreText{
     font-family: 'Permanent Marker', cursive;
     font-size: 30px;
+   
 }
 
 #mySelect{
@@ -65,8 +66,9 @@
   
   .sideButtons {
     display: flex;
-   gap: 6rem;
-   justify-content: space-between;
+   gap: 1.2rem;
+   justify-content: center;
+   place-items: center;
   }
 
   .arrow-left:before {
