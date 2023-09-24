@@ -38,7 +38,7 @@
     margin-top: 10px;
 }
 .directionButtons{
-    width: 350px;
+    width: 320px;
 }
 
 .arrow-button {
@@ -65,8 +65,8 @@
   
   .sideButtons {
     display: flex;
-   gap: 4rem;
-   justify-content: center;
+   gap: 6rem;
+   justify-content: space-between;
   }
 
   .arrow-left:before {
