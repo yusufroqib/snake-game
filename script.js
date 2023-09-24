@@ -125,7 +125,7 @@ function gameStart() {
           break;
         case "option3":
           // Code to perform when Option 3 is selected
-          difLevel = 300
+          difLevel = 350
           break;
         case "option4":
           // Code to perform when Option 3 is selected
