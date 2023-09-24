@@ -12,7 +12,7 @@ html {
 }
 
 #scoreText{
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Permanent Marker', cursive, sans-serif;
     font-size: 30px;
    
 }
