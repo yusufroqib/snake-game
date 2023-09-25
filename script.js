@@ -7,6 +7,7 @@ const arrowButtonUp = document.querySelector('.arrowButtonUp')
 const arrowButtonLeft = document.querySelector('.arrowButtonLeft')
 const arrowButtonRight = document.querySelector('.arrowButtonRight')
 const arrowButtonDown = document.querySelector('.arrowButtonDown')
+const restart = document.querySelector('.restart')
 const gameWidth = gameBoard.width
 const gameHeight = gameBoard.height
 const boardBackground = 'white';
@@ -232,6 +233,8 @@ function displayGameOver() {
     ctx.fillStyle = 'black'
     ctx.textAlign = 'center'
     ctx.fillText('GAME OVER', gameWidth/2, gameHeight/2)
+
+    restart.style.display = 'inline-block'
 }
 
 function resetGame() {
@@ -246,6 +249,6 @@ function resetGame() {
         { x: unitSize, y: 0 },
         { x: 0, y: 0 },
     ];
-   
+    restart.style.display = 'none'
     gameStart();
 }
