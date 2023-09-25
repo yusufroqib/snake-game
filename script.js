@@ -16,35 +16,27 @@ const snakeColor = 'lightgreen';
 const snakeBorder = 'black'
 const foodColor = 'red'
 const unitSize = 20;
+
+let score = 0;
+let running = false;
 let gamePaused = false
+let xVelocity = unitSize
+let yVelocity = 0
+let foodX;
+let foodY;
+let difLevel;
 
+let snake = [
+    {x: unitSize*4, y: 0},
+    {x: unitSize*3, y: 0},
+    {x: unitSize*2, y: 0},
+    {x: unitSize, y: 0},
+    {x: 0, y: 0}
+]
+
+window.addEventListener('keydown', changeDirection);
+resetBtn.addEventListener('click', resetGame);
 pause.addEventListener('click', togglePause)
-
-function togglePause() {
-    
-    if (gamePaused) {
-        // Resume the game loop
-        gamePaused = false;
-        nextTick(); // Call your game loop function
-    } else {
-        // Pause the game loop
-        gamePaused = true;
-        nextTick()
-    }
-    updateButtonLabel()
-    
-}
-
-function updateButtonLabel() {
-    if (gamePaused) {
-        pause.textContent = "Resume";
-    } else {
-        pause.textContent = "Pause";
-    }
-}
-
-
-
 arrowButtonUp.addEventListener('click', () => {
     const goingDown = (yVelocity == unitSize)
     if (!goingDown) {
@@ -78,29 +70,14 @@ arrowButtonDown.addEventListener('click', () => {
 })
 
 
-
-let score = 0;
-let running = false;
-let xVelocity = unitSize
-let yVelocity = 0
-let foodX;
-let foodY;
-let difLevel;
-
-let snake = [
-    {x: unitSize*4, y: 0},
-    {x: unitSize*3, y: 0},
-    {x: unitSize*2, y: 0},
-    {x: unitSize, y: 0},
-    {x: 0, y: 0}
-]
-
-window.addEventListener('keydown', changeDirection);
-resetBtn.addEventListener('click', resetGame);
-
-gameStart()
+// LOAD GAME 
+freshGame()
 
 
+function freshGame() {
+    restart.style.display = 'inline-block'
+    pause.style.display = 'none'
+}
 
 function nextTick() {
     if (!gamePaused) {
@@ -152,24 +129,19 @@ function gameStart() {
     const selectedOptionValue = selectElement.value;
     
     switch (selectedOptionValue) {
-        case "option1":
-          // Code to perform when Option 1 is selected
+        case "veryEasy":
           difLevel = 500
                 break;
-        case "option2":
-          // Code to perform when Option 2 is selected
+        case "easy":
           difLevel = 400
           break;
-        case "option3":
-          // Code to perform when Option 3 is selected
+        case "normal":
           difLevel = 350
           break;
-        case "option4":
-          // Code to perform when Option 3 is selected
+        case "hard":
           difLevel = 200
           break;
-        case "option5":
-          // Code to perform when Option 3 is selected
+        case "veryHard":
           difLevel = 100
           break;
       }
@@ -183,6 +155,28 @@ function gameStart() {
 }
 
 
+function togglePause() {
+    
+    if (gamePaused) {
+        // Resume the game loop
+        gamePaused = false;
+        nextTick(); // Call your game loop function
+    } else {
+        // Pause the game loop
+        gamePaused = true;
+        nextTick()
+    }
+    updateButtonLabel()
+    
+}
+
+function updateButtonLabel() {
+    if (gamePaused) {
+        pause.textContent = "Resume";
+    } else {
+        pause.textContent = "Pause";
+    }
+}
 
 function moveSnake() {
     const head = {x: snake[0].x + xVelocity, y: snake[0].y + yVelocity}
@@ -269,7 +263,7 @@ function displayGameOver() {
     ctx.fillStyle = 'black'
     ctx.textAlign = 'center'
     ctx.fillText('GAME OVER', gameWidth/2, gameHeight/2)
-
+    resetBtn.textContent = 'Restart'
     restart.style.display = 'inline-block'
 }
 
