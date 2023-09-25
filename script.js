@@ -8,6 +8,7 @@ const arrowButtonLeft = document.querySelector('.arrowButtonLeft')
 const arrowButtonRight = document.querySelector('.arrowButtonRight')
 const arrowButtonDown = document.querySelector('.arrowButtonDown')
 const restart = document.querySelector('.restart')
+const pause = document.querySelector('.pause')
 const gameWidth = gameBoard.width
 const gameHeight = gameBoard.height
 const boardBackground = 'white';
@@ -15,6 +16,33 @@ const snakeColor = 'lightgreen';
 const snakeBorder = 'black'
 const foodColor = 'red'
 const unitSize = 20;
+let gamePaused = false
+
+pause.addEventListener('click', togglePause)
+
+function togglePause() {
+    
+    if (gamePaused) {
+        // Resume the game loop
+        gamePaused = false;
+        nextTick(); // Call your game loop function
+    } else {
+        // Pause the game loop
+        gamePaused = true;
+        nextTick()
+    }
+    updateButtonLabel()
+    
+}
+
+function updateButtonLabel() {
+    if (gamePaused) {
+        pause.textContent = "Resume";
+    } else {
+        pause.textContent = "Pause";
+    }
+}
+
 
 
 arrowButtonUp.addEventListener('click', () => {
@@ -75,19 +103,27 @@ gameStart()
 
 
 function nextTick() {
-
-    if (running) {
-        setTimeout(()=>{
-            clearBoard();
-            drawFood();
-            moveSnake();
-            drawSnake();
-            checkGameOver();
-            nextTick();
-        }, difLevel)
-    } else{
-        displayGameOver();
+    if (!gamePaused) {
+        if (running) {
+            setTimeout(()=>{
+                clearBoard();
+                drawFood();
+                moveSnake();
+                drawSnake();
+                checkGameOver();
+                nextTick();
+            }, difLevel)
+        } else{
+            displayGameOver();
+            pause.style.display = 'none'
+        }
+    } else {
+        ctx.font = '50px MV Boli'
+        ctx.fillStyle = 'black'
+        ctx.textAlign = 'center'
+        ctx.fillText('PAUSED', gameWidth/2, gameHeight/2)
     }
+     
 }
 
 function clearBoard() {
@@ -250,5 +286,6 @@ function resetGame() {
         { x: 0, y: 0 },
     ];
     restart.style.display = 'none'
+    pause.style.display = 'inline-block'
     gameStart();
 }
