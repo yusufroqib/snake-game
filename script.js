@@ -265,7 +265,9 @@ function displayGameOver() {
   restart.style.display = "inline-block"; //Show restart button
 }
 
-// Pause game with the "SPACE BAR" button of your keyboard 
+
+
+// ***********************Pause game with the "SPACE BAR" button of your keyboard *******************
 function pauseButtonForSpace(event) {
   if (running) { 
   const keyPressed = event.keyCode;
@@ -277,6 +279,7 @@ function pauseButtonForSpace(event) {
     freshGame()
   }
 }
+
 
 function resetGame() {
   running = false;
