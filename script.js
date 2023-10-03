@@ -36,15 +36,9 @@ let snake = [
 
 // ***************************Event listeners******************************
 window.addEventListener("keydown", changeDirection);
+window.addEventListener("keydown", pauseButton);
 resetBtn.addEventListener("click", resetGame);
 pause.addEventListener("click", togglePause);
-
-// Pause game with the "SPACE BAR" button of your keyboard 
-window.addEventListener("keyup", function(event) {
-  if (event.keyCode == 32) {
-    pause.click()
-  }
-});
 
 
     //The Direction buttons
@@ -269,6 +263,16 @@ function displayGameOver() {
   ctx.fillText("GAME OVER", gameWidth / 2, gameHeight / 2);
   resetBtn.textContent = "Restart";     //Change text content of the button to Restart. (from Start Game)
   restart.style.display = "inline-block"; //Show restart button
+}
+
+// Pause game with the "SPACE BAR" button of your keyboard 
+function pauseButton(event) {
+  const keyPressed = event.keyCode;
+  const paused = 32;
+  switch (true) {
+    case keyPressed == paused: pause.click()
+    break
+  }
 }
 
 function resetGame() {
