@@ -36,7 +36,7 @@ let snake = [
 
 // ***************************Event listeners******************************
 window.addEventListener("keydown", changeDirection);
-window.addEventListener("keydown", pauseButton);
+window.addEventListener("keydown", pauseButtonForSpace);
 resetBtn.addEventListener("click", resetGame);
 pause.addEventListener("click", togglePause);
 
@@ -266,12 +266,15 @@ function displayGameOver() {
 }
 
 // Pause game with the "SPACE BAR" button of your keyboard 
-function pauseButton(event) {
+function pauseButtonForSpace(event) {
+  if (running) { 
   const keyPressed = event.keyCode;
   const paused = 32;
   switch (true) {
     case keyPressed == paused: pause.click()
     break
+  }} else {
+    freshGame()
   }
 }
 
