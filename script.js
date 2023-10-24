@@ -271,9 +271,9 @@ function displayGameOver() {
 function pauseButtonForSpace(event) {
   if (running) { 
   const keyPressed = event.keyCode;
-  const paused = 32;
+  const spaceBar = 32;
   switch (true) {
-    case keyPressed == paused: pause.click()
+    case keyPressed == spaceBar: pause.click()
     break
   }} else {
     freshGame()
